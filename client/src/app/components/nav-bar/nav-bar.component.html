@@ -1,0 +1,9 @@
+<div class="w-100 flex bg-blue pa3">
+  <div class="w-90 flex">
+    <a [routerLink]="[ '/mycollection' ]" routerLinkActive="active" class="pointer ml5 white" >Home</a>
+    <a [routerLink]="[ '/discover' ]" routerLinkActive="active" class="pointer white ml5">Discover</a>
+  </div>
+  <div class="w-10 flex">
+    <a  (click)="logout()" class="white pointer" >Logout</a>
+  </div>
+</div>

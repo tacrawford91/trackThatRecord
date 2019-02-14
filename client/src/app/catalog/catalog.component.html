@@ -1,0 +1,12 @@
+
+<div class="container">
+  <h1>My Collection</h1>
+  <div class="flex overflow-hidden" *ngIf="catalog">
+    <div class="mv3 tc grow" *ngFor="let record of catalog.records">
+      <img src="{{record.cover_image}}">
+      <h3 class="db">{{record.title}}</h3>
+      <ng-modal-component [title]="record.title" [format]="record.format" [genre]="record.genre" [cover_image]="record.cover_image"
+        ></ng-modal-component>
+    </div>
+  </div>
+</div>

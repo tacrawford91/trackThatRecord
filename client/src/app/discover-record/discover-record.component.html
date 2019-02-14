@@ -1,0 +1,26 @@
+
+<!-- <mat-form-field>
+<mat-label>Artist Search</mat-label>
+<input matInput placeholder="Artist" #artist>
+</mat-form-field> -->
+
+<input placeholder="Artist" #artist>
+<button mat-button (click)="artistSearch(artist)">Search</button>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 mv3 tc grow" *ngFor="let result of searchResults">
+      <img src="{{result.cover_image}}">
+      <h3 class="db">{{result.title}}</h3>
+      <ng-modal-component 
+        [title]="result.title"
+        [format]="result.format"
+        [genre]="result.genre"
+        [cover_image]="result.cover_image"
+        (onSaveRecordPressed)="saveRecord(result)"
+        (addToCollectionPressed)="addToCollection(result)"
+      ></ng-modal-component>
+    </div>
+  </div>
+</div>
+

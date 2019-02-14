@@ -1,0 +1,100 @@
+const express = require('express');
+const router = express.Router();
+const catalog = require('../models/catalog');
+
+
+
+
+
+
+//POST HTTP method
+//create
+router.post('/create/:id', (req, res, next) => {
+    let newCatalog = new catalog({
+        name: req.body.name,
+        userId: req.body.userId,
+        records: req.body.records,
+        age: req.body.age,
+        value: req.body.value,
+    });
+
+    catalog.addCatalog(newCatalog, (err, catalog) => {
+        if (err) {
+            res.json({ success: false, message: `Failed to create a new catalog. Error: ${err}` });
+
+        }
+        else
+            res.json({ success: true, message: "Added successfully.", catalog: catalog });
+
+    });
+});
+
+//put - add record
+router.put('/add-record/:userid', (req, res, next) => {
+    const record = req.body.record
+    catalog.addRecordToCatalog(req.params.userid, record, (err, newRecord) => {
+        if (err) {
+            res.json({ success: false, message: `Failed to add record. Error: ${err}` });
+
+        }
+        else
+            res.json({ success: true, message: "Added record successfully.", newRecord: newRecord });
+
+    });
+
+});
+
+
+//GET HTTP method 
+router.get('/all', (req, res) => {
+    catalog.getAllCatalogs((err, catalog) => {
+        if (err) {
+            res.json({ success: false, message: `Failed to load all catalogs. Error: ${err}` });
+        }
+        else {
+            res.write(JSON.stringify({ success: true, user: user }, null, 2));
+            res.end();
+        }
+    });
+});
+
+
+
+router.get('/:id', (req, res) => {
+    catalog.getCatalogByUserId(req.params.id, (err, catalog) => {
+        if (err) {
+            res.json({ success: false, message: `Failed to load user. Error: ${err}` });
+        }
+        else {
+            res.write(JSON.stringify({ success: true, catalog: catalog }, null, 2));
+            res.end();
+        }
+    });
+});
+
+
+
+
+
+
+
+
+//DELETE HTTP method 
+
+router.delete('/delete/:id', (req, res, next) => {
+    //access the parameter which is the id of the item to be deleted
+    let id = req.params.id;
+    //Call the model method deleteListById
+    user.deleteUserById(id, (err, user) => {
+        if (err) {
+            res.json({ success: false, message: `Failed to delete the user. Error: ${err}` });
+        }
+        else if (user) {
+            res.json({ success: true, message: "Deleted successfully" });
+        }
+        else
+            res.json({ success: false });
+    })
+});
+
+module.exports = router;

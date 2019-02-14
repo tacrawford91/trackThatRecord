@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>TrackThatRecordApp</title>
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- tachyons -->
+  <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css" />
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
+  <!-- google platform library for signin -->
+  <script src="https://apis.google.com/js/platform.js?onload=onLoadCallback" async defer></script>
+  <!-- google client id -->
+  <meta name="google-signin-client_id" content="194602267409-3vee0att2hh3dov7ie0t88u2iqdbjg53.apps.googleusercontent.com">
+
+
+</head>
+<body>
+  <!-- facebook login -->
+    <script>
+      window.fbAsyncInit = function () {
+        FB.init({
+          appId: '311624336135692',
+          cookie: true,
+          xfbml: true,
+          version: 'v3.2'
+        });
+
+        FB.AppEvents.logPageView();
+
+      };
+
+      (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) { return; }
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
+  <app-root></app-root>
+</body>
+</html>
