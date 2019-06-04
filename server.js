@@ -13,6 +13,7 @@ const recordController = require('./controller/recordController');
 const discogsController = require ('./controller/api-discogs')
 const userController = require ('./controller/userController');
 const catalogController = require ('./controller/catalogController');
+const watchlistController = require ('./controller/watchlistController');
 
 
 const PORT = process.env.PORT || 3000;
@@ -25,6 +26,7 @@ app.use('/api/record', recordController);
 app.use('/api/discogs', discogsController);
 app.use('/api/user', userController);
 app.use('/api/catalog', catalogController);
+app.use('/api/watchlist', watchlistController);
 
 mongoose.connect(config.database, { useNewUrlParser: true });
 

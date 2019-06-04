@@ -1,4 +1,8 @@
 const mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+const Catalog = require('./catalog');
+const Watchlist = require('./watchlist');
+
 
 const UserSchema = mongoose.Schema({
     name: {
@@ -11,8 +15,8 @@ const UserSchema = mongoose.Schema({
     gId: String,
     fbId: String,
     image: String,
-    catalog: String,
-    watchList: String,
+    catalog: {type: Schema.Types.ObjectId, ref: Catalog},
+    watchlist: {type: Schema.Types.ObjectId, ref: Watchlist},
     bounds:[{}],
     tele: String
 });
@@ -33,6 +37,20 @@ module.exports.getUserByFacebook = (facebookId, callback) => {
 
 module.exports.addUser = (newUser, callback) => {
     newUser.save(callback);
+}
+
+module.exports.addCatalog = (userId, catalogId, callback) => {
+  
+  User.findByIdAndUpdate(userId,{
+    catalog: catalogId
+  }, callback);
+}
+
+module.exports.addWatchlist = (userId, watchlistId, callback) => {
+  
+  User.findByIdAndUpdate(userId,{
+    watchlist: watchlistId
+  }, callback);
 }
 
 module.exports.deleteUserById = (id, callback) => {

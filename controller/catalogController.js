@@ -29,10 +29,12 @@ router.post('/create/:id', (req, res, next) => {
     });
 });
 
+
+
 //put - add record
 router.put('/add-record/:userid', (req, res, next) => {
-    const record = req.body.record
-    catalog.addRecordToCatalog(req.params.userid, record, (err, newRecord) => {
+    const record_Id = req.body.record
+    catalog.addRecordToCatalog(req.params.userid, record_Id, (err, newRecord) => {
         if (err) {
             res.json({ success: false, message: `Failed to add record. Error: ${err}` });
 
@@ -52,7 +54,7 @@ router.get('/all', (req, res) => {
             res.json({ success: false, message: `Failed to load all catalogs. Error: ${err}` });
         }
         else {
-            res.write(JSON.stringify({ success: true, user: user }, null, 2));
+            res.write(JSON.stringify({ success: true, catalog: catalog }, null, 2));
             res.end();
         }
     });
@@ -61,13 +63,13 @@ router.get('/all', (req, res) => {
 
 
 router.get('/:id', (req, res) => {
-    catalog.getCatalogByUserId(req.params.id, (err, catalog) => {
+    catalog.getCatalogById(req.params.id, (err, catalog) => {
         if (err) {
             res.json({ success: false, message: `Failed to load user. Error: ${err}` });
         }
         else {
-            res.write(JSON.stringify({ success: true, catalog: catalog }, null, 2));
-            res.end();
+            res.send(catalog);
+            // res.write(JSON.stringify({ success: true, catalog: catalog}, null, 2));
         }
     });
 });
@@ -81,16 +83,14 @@ router.get('/:id', (req, res) => {
 
 //DELETE HTTP method 
 
-router.delete('/delete/:id', (req, res, next) => {
-    //access the parameter which is the id of the item to be deleted
-    let id = req.params.id;
-    //Call the model method deleteListById
-    user.deleteUserById(id, (err, user) => {
+router.delete('/remove-record/:catalogId/:recordId', (req, res, next) => {
+   
+    catalog.removeRecordFromCatalog(req.params.catalogId, req.params.recordId, (err, updatedList) => {
         if (err) {
             res.json({ success: false, message: `Failed to delete the user. Error: ${err}` });
         }
-        else if (user) {
-            res.json({ success: true, message: "Deleted successfully" });
+        else if (updatedList) {
+            res.json({ success: true, updatedList: updatedList });
         }
         else
             res.json({ success: false });

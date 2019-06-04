@@ -1,0 +1,38 @@
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.navBarColor {
+  // background: #a7b0bd6b;
+  background: #000000e0;
+}
+
+/deep/ .nav-link.link.active {
+  background-color: #464242 !important;
+  border-color: gray;
+  border-bottom: none;
+}
+
+/deep/ .nav-tabs.nav-link.active {
+  background-color:#FFFDEF !important;
+  border-color: gray !important;
+}
+.linkBorder {
+  border: 1px solid;
+  border-color: #dee2e6 #dee2e6 #fff;
+  border-top-left-radius: .25rem;
+  border-top-right-radius: .25rem;
+}
+
+.white {
+  color: white;
+}
+
+/deep/ .navbar {
+  padding: 0;
+}
+/deep/ .link:focus {
+  transition: color .15s ease-in;
+  outline: none;
+}

@@ -1,0 +1,26 @@
+html,
+body {
+ height: 100%;
+ position: relative;
+}
+.mainPageWrapper {
+ min-height: 100vh; /* will cover the 100% of viewport */
+ overflow: hidden;
+ display: block;
+ position: relative;
+ padding-bottom: 100px; /* height of your footer */
+}
+
+.footerbkg {
+  background-image: url("/assets/images/recordFooterImage.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center 0;
+  background-color: white;
+  height: 100%;
+}
+footer {
+  position: absolute;
+  bottom: 0;
+  height: 100px;
+}

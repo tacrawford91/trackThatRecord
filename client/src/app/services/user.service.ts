@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
-
+import { CatalogService } from './catalog.service';
+import { WatchlistService } from '../services/watch-list.service'
 
 
 @Injectable({
@@ -13,6 +14,8 @@ export class UserService {
 
   constructor(
     private http: HttpClient,
+    private catalogService: CatalogService,
+    private watchlistService: WatchlistService
   ) { }
 
   private serverApi = 'http://localhost:3000';
@@ -77,12 +80,47 @@ export class UserService {
       bounds: [{}],
       tele: user.tele
     }
-    console.log('service', newUser);
-    console.log(user.id);
+
     let restId = this._restId(user);
 
     let URI = `${this.serverApi}/api/user/save/${restId}`;
-    return this.http.post(URI, newUser).subscribe((data) => {return data});
+    return this.http.post(URI, newUser).subscribe((data) => {
+    //create catalog
+    console.log('should be user inforatmuon', data['user'])
+    this.catalogService.createCatalog(data['user']).subscribe((newCatalog) => {
+      this.createCatalogForUser(data['user'], newCatalog['catalog'])
+    })
+    //create watchlist
+    this.watchlistService.createWatchlist(data['user']).subscribe((newWatchlist) => {
+      this.createWatchlistForUser(data['user'], newWatchlist['watchlist'])
+    })
+
+      return data
+    });
+  }
+
+  createCatalogForUser(user, catalog) {
+    
+    let URI = `${this.serverApi}/api/user/save/catalog/${user._id}`;
+    console.log('create catalog for user hit', catalog)
+
+    
+    return this.http.put(URI,catalog).subscribe((data) => {
+      console.log('new catalog created', data)
+    })
+
+  }
+
+  createWatchlistForUser(user, watchlist) {
+    
+    let URI = `${this.serverApi}/api/user/save/watchlist/${user._id}`;
+    console.log('create watchlist  for user hit', watchlist)
+
+    
+    return this.http.put(URI,watchlist).subscribe((data) => {
+      console.log('new watchlist created', data)
+    })
+
   }
 
 

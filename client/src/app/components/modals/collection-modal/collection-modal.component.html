@@ -1,0 +1,43 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">{{title}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="{{cover_image}}" />
+            </div>
+            <div class="col-md-6">
+                <h1>{{title}}</h1>
+                <h3><span>Genre:</span> {{genre}}</h3>
+                <h3><span>Formats:</span> {{format}}</h3>
+                <div *ngIf="priceEstimate">
+                  ${{priceEstimate}}
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="row w-100 tc">
+            <div class="col-md-4">
+                <button type="button" class="btn btn-dark" (click)="removeFromCollectionPressed.emit(); modal.close('Close click') ">Remove From To Collection</button>
+            </div>
+            <div class="col-md-4">
+                <button type="button" class="btn btn-dark" (click)="getRecordPrice(releaseId)">Get Price Estimate</button>
+            </div>
+            <div class="col-md-4">
+                <button type="button" class="btn btn-dark" (click)="modal.close('Close click')">Close</button>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+
+<div (click)="openVerticallyCentered(content)">
+  <ng-content></ng-content>
+  <button class="btn btn-outline-primary mb-2 mr-2">More</button>
+</div>

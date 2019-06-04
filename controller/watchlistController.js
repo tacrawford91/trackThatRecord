@@ -31,8 +31,9 @@ router.post('/create/:id', (req, res, next) => {
 
 //put - add record
 router.put('/add-record/:userid', (req, res, next) => {
-    const record = req.body.record
-    watchlist.addRecordToWatchlist(req.params.userid, record, (err, newRecord) => {
+    const record_Id = req.body.record
+    watchlist.addRecordToWatchlist(req.params.userid, record_Id, (err, newRecord) => {
+      console.log('this is what the record controller is returning', newRecord)
         if (err) {
             res.json({ success: false, message: `Failed to add record. Error: ${err}` });
 
@@ -61,15 +62,15 @@ router.get('/all', (req, res) => {
 
 
 router.get('/:id', (req, res) => {
-    watchlist.getWatchlistByUserId(req.params.id, (err, watchlist) => {
-        if (err) {
-            res.json({ success: false, message: `Failed to load user. Error: ${err}` });
-        }
-        else {
-            res.write(JSON.stringify({ success: true, watchlist: watchlist }, null, 2));
-            res.end();
-        }
-    });
+  watchlist.getWatchlistById(req.params.id, (err, watchlist) => {
+      if (err) {
+          res.json({ success: false, message: `Failed to load watchlust. Error: ${err}` });
+      }
+      else {
+          res.send(watchlist);
+          // res.write(JSON.stringify({ success: true, catalog: catalog}, null, 2));
+      }
+  });
 });
 
 
@@ -81,20 +82,18 @@ router.get('/:id', (req, res) => {
 
 //DELETE HTTP method 
 
-router.delete('/delete/:id', (req, res, next) => {
-    //access the parameter which is the id of the item to be deleted
-    let id = req.params.id;
-    //Call the model method deleteListById
-    user.deleteUserById(id, (err, user) => {
-        if (err) {
-            res.json({ success: false, message: `Failed to delete the user. Error: ${err}` });
-        }
-        else if (user) {
-            res.json({ success: true, message: "Deleted successfully" });
-        }
-        else
-            res.json({ success: false });
-    })
-});
 
+router.delete('/remove-record/:watchlistId/:recordId', (req, res, next) => {
+
+  watchlist.removeRecordFromWatchlist(req.params.watchlistId, req.params.recordId, (err, updatedList) => {
+      if (err) {
+          res.json({ success: false, message: `Failed to delete the user. Error: ${err}` });
+      }
+      else if (updatedList) {
+          res.json({ success: true, updatedList: updatedList });
+      }
+      else
+          res.json({ success: false });
+  })
+});
 module.exports = router;

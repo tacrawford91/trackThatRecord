@@ -1,9 +1,23 @@
-<div class="w-100 flex bg-blue pa3">
-  <div class="w-90 flex">
-    <a [routerLink]="[ '/mycollection' ]" routerLinkActive="active" class="pointer ml5 white" >Home</a>
-    <a [routerLink]="[ '/discover' ]" routerLinkActive="active" class="pointer white ml5">Discover</a>
-  </div>
-  <div class="w-10 flex">
-    <a  (click)="logout()" class="white pointer" >Logout</a>
-  </div>
-</div>
+  
+<nav class="navbar navbar-expand-sm navbar-expand-md navbar-expand-lg navbar-light pb0 navBarColor">
+    <!-- <a class="navbar-brand" href="#">Track That Record</a> -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="nav nav-fill w-100 flex">
+        <li class="nav-item mh2">
+            <a class="nav-link white" [routerLink]="[ '/login' ]" data-toggle="tab" routerLinkActive="active">Track That Record</a>
+        </li>
+        <li class="nav-item  mh2">
+          <a class="nav-link link white" [routerLink]="[ '/discover' ]" data-toggle="tab" routerLinkActive="active" >Discover</a>
+        </li>
+        <li class="nav-item  mh2">
+          <a class="nav-link link white" [routerLink]="[ '/mycollection' ]" data-toggle="tab" routerLinkActive="active">Home</a>
+        </li>
+        <li class="nav-item  mh2">
+          <a class="nav-link link white" [routerLink]="[ '/' ]"  data-toggle="tab" (click)="logout()"> logout</a>
+        </li>
+      </ul>
+    </div>
+  </nav>

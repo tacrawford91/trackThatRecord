@@ -34,17 +34,44 @@ router.post('/save/:id', (req, res, next) => {
         year: req.body.year,
         uri: req.body.uri
     });
-    console.log('save Record hit', req.body);
-    record.addRecord(newRecord, (err, list) => {
+    record.addRecord(newRecord, (err, savedRecord) => {
         if (err) {
             res.json({ success: false, message: `Failed to create a new record. Error: ${err}` });
 
         }
         else
-            res.json({ success: true, message: "Added successfully." });
+            res.json({ success: true, savedRecord: savedRecord });
 
     });
 });
+
+//find many
+router.get('/recordList', (req, res) => {
+  let recordArray = req.body.recordArray
+
+  record.getRecordList(recordArray, (err, records) => {
+    if (!err) {
+      res.json({ success: true, records: records })
+    } else {
+      res.json({ success: false, message: `Failed to get record list Error: ${err}` });
+
+    }
+  })
+
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //DELETE HTTP method 
 

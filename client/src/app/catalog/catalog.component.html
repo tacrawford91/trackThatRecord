@@ -1,12 +1,58 @@
 
-<div class="container">
-  <h1>My Collection</h1>
-  <div class="flex overflow-hidden" *ngIf="catalog">
-    <div class="mv3 tc grow" *ngFor="let record of catalog.records">
-      <img src="{{record.cover_image}}">
-      <h3 class="db">{{record.title}}</h3>
-      <ng-modal-component [title]="record.title" [format]="record.format" [genre]="record.genre" [cover_image]="record.cover_image"
-        ></ng-modal-component>
+<div class=" watchListHeroBkg">
+  <div class="container">
+      <div class="row">
+          <h1 class="white pv4 mv0 f2 center titleShadow">My Watchlist</h1>
+      </div>
+      <div class="row">
+          <div class="flex overflow-hidden" *ngIf="watchlist">
+              <div class="ma2 pa2 tc grow collectionAlbum" *ngFor="let record of watchlist.records">
+                <watchlist-modal-component [title]="record.title" [format]="record.format" [genre]="record.genre" [cover_image]="record.cover_image"
+                  (removeFromWatchlistPressed)="removeFromWatchlist(record)"   
+                >
+                <img src="{{record.cover_image}}">
+                <h3 class="db">{{record.title}}</h3>
+              </watchlist-modal-component>
+              </div>
+            </div>
+      </div>
+  </div>
+</div>
+
+<div class="searchBarGray">
+    <div class="container pv4">
+      <div class="row">
+        <div class="col-md-6 tc">
+          <div class="f2 white titleShadow">My Collection</div>
+        </div>
+        <div class="col-md-6 flex items-center">
+          <div class>
+            <div class="box">
+                <div class="container-4">
+                  <input #artist type="search" id="search" placeholder="Search By Artist..."  (keyup.enter)="artistSearch(artist)"/>
+                  <button class="icon" (click)="artistSearch(artist)" ><i class="fa fa-search"></i></button>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+
+<div class="collectionHeroBkg">
+  <div class="container">
+      <div class="flex overflow-hidden" *ngIf="catalog">
+        <div class="ma2 pa2 tc grow collectionAlbum" *ngFor="let record of catalog.records">
+          <!-- <img src="{{record.cover_image}}">
+          <h3 class="db">{{record.title}}</h3> -->
+          <collection-modal-component   [title]="record.title" [format]="record.format" [genre]="record.genre" [cover_image]="record.cover_image" [releaseId] = "release_id"
+          (removeFromCollectionPressed)="removeFromCollection(record)"  
+          >
+          <img src="{{record.cover_image}}">
+          <h3 class="db">{{record.title}}</h3>
+        
+        </collection-modal-component>
+        </div>
+      </div>
+    </div>
 </div>

@@ -1,26 +1,113 @@
 
-<!-- <mat-form-field>
-<mat-label>Artist Search</mat-label>
-<input matInput placeholder="Artist" #artist>
-</mat-form-field> -->
+<div class="discoverBodyHero">
+  <div class="container">
+    <div class="row">
+        <div class="white pv5 mv0 f1 titleShadow tc">
+          <div class="titleColor titleShadow mainHeader">Track That Record </div>
+          <div class="flex white f3 tc">
+            <h3 class="w-33">Grow</h3>
+            <h3 class="w-33">Share</h3>  
+            <h3 class="w-33">Spin</h3>
+          </div>
+        </div>
+    </div>
+    <div class="row tr">
 
-<input placeholder="Artist" #artist>
-<button mat-button (click)="artistSearch(artist)">Search</button>
-
-<div class="container">
-  <div class="row">
-    <div class="col-md-4 mv3 tc grow" *ngFor="let result of searchResults">
-      <img src="{{result.cover_image}}">
-      <h3 class="db">{{result.title}}</h3>
-      <ng-modal-component 
-        [title]="result.title"
-        [format]="result.format"
-        [genre]="result.genre"
-        [cover_image]="result.cover_image"
-        (onSaveRecordPressed)="saveRecord(result)"
-        (addToCollectionPressed)="addToCollection(result)"
-      ></ng-modal-component>
     </div>
   </div>
 </div>
 
+<div class="searchBarGray">
+  <div class="container pv4">
+    <div class="row">
+      <div class="col-md-6 tc">
+        <div class="f1 white titleShadow textRecordGray">Discover +</div>
+      </div>
+      <div class="col-md-6 flex items-center">
+        <div class>
+          <div class="box">
+              <div class="container-4">
+                <input #artist type="search" id="search" placeholder="Search By Artist..."  (keyup.enter)="artistSearch(artist)"/>
+                <button class="icon" (click)="artistSearch(artist)" ><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="relative tc">
+    <div *ngIf="!searchResults" class="spacer flex items-center flex-wrap center">
+        <div class="w-33">
+          <img src="/assets/images/plainRecordImg.png">
+        </div>
+        <div class="w-33">
+          <img src="/assets/images/plainRecordImg.png">
+        </div>
+        <div class="w-33">
+          <img src="/assets/images/plainRecordImg.png">
+        </div>
+
+        <div class="w-33">
+          <img src="/assets/images/plainRecordImg.png">
+        </div>
+        <div class="w-33">
+          <img src="/assets/images/plainRecordImg.png">
+        </div>
+        <div class="w-33">
+          <img src="/assets/images/plainRecordImg.png">
+        </div>
+
+        <div *ngIf="!searchResults" class="spacer__text white absolute f4 titleShadow mb4 w-100 tc ttu">
+            Search an artist above to Grow your collection or add to watchlist
+        </div>
+       
+        <!-- <div class="container">
+          <div cslass="row">
+            <div class="flex flex-wrap items-center overflow-hidden mv6"> 
+              <div class="tc grow searchAlbum w-25 pa2 ma2" *ngFor="let result of searchResults">
+                <discover-modal-component 
+                  [title]="result.title"
+                  [format]="result.format"
+                  [genre]="result.genre"
+                  [cover_image]="result.cover_image"
+                  (onSaveRecordPressed)="saveRecord(result)"
+                  (addToCollectionPressed)="addToCollection(result)"
+                  (addToWatchlistPressed)="addToWatchlist(result)"
+                >
+                <img src="{{result.cover_image}}">
+                <h3 class="db">{{result.title}}</h3>
+              
+              </discover-modal-component>
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+      </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="flex flex-wrap items-center">
+      <div class="tc grow searchAlbum pa2 ma2 w-20" *ngFor="let result of searchResults">
+        <discover-modal-component 
+          [title]="result.title"
+          [format]="result.format"
+          [genre]="result.genre"
+          [cover_image]="result.cover_image"
+          (onSaveRecordPressed)="saveRecord(result)"
+          (addToCollectionPressed)="addToCollection(result)"
+          (addToWatchlistPressed)="addToWatchlist(result)"
+        >
+        <div>
+          <img class="albumImg" src="{{result.cover_image}}">
+        </div>
+        <h3 class="db f4">{{result.title}}</h3>
+      </discover-modal-component>
+      </div>
+    </div>
+  </div>
+</div>

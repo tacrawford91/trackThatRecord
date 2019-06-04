@@ -9,13 +9,11 @@ import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http'
 
 
 import { AppComponent } from './app.component';
-import { RecordListComponent } from './record-list/record-list.component';
-import { RecordItemComponent } from './record-item/record-item.component';
 import { DiscoverRecordComponent } from './discover-record/discover-record.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatButtonModule, MatGridListModule, MatFormField, MatFormFieldModule } from '@angular/material';
+import {MatButtonModule, MatInputModule, MatGridListModule, MatFormField, MatFormFieldModule } from '@angular/material';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { NgModalComponent } from './components/modal/ng-modal.component';
+import { DiscoverModalComponent, CollectionModalComponent, WatchlistModalComponent } from './components/modals';
 import { AuthGuard } from './_guards/auth.gaurd';
 
 import {
@@ -23,7 +21,7 @@ import {
   AuthServiceConfig,
   GoogleLoginProvider,
   FacebookLoginProvider,
-} from "angular-6-social-login";
+} from 'angular-6-social-login';
 
 
 import { RecordService } from './services/record.service';
@@ -33,17 +31,17 @@ import { PageWrapperComponent } from './components/page-wrapper/page-wrapper.com
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 
 
-// Configs 
+// Configs
 export function getAuthServiceConfigs() {
-  let config = new AuthServiceConfig(
+  const config = new AuthServiceConfig(
     [
       {
         id: FacebookLoginProvider.PROVIDER_ID,
-        provider: new FacebookLoginProvider("311624336135692")
+        provider: new FacebookLoginProvider('311624336135692')
       },
       {
         id: GoogleLoginProvider.PROVIDER_ID,
-        provider: new GoogleLoginProvider("194602267409-3vee0att2hh3dov7ie0t88u2iqdbjg53")
+        provider: new GoogleLoginProvider('194602267409-3vee0att2hh3dov7ie0t88u2iqdbjg53')
       },
     ]);
   return config;
@@ -56,9 +54,8 @@ const appRoutes: Routes = [
   { path: '', component: PageWrapperComponent,
     children: [
       { path: 'login', component: SigninComponent},
-      { path:'discover', component: DiscoverRecordComponent, canActivate: [AuthGuard] },
-      { path: 'record/:id', component: RecordItemComponent, canActivate: [AuthGuard] },
-      { path: 'mycollection', component: CatalogComponent, canActivate: [AuthGuard]},
+      { path: 'discover', component: DiscoverRecordComponent, canActivate: [AuthGuard] },
+      { path: 'mycollection', component: CatalogComponent, canActivate: [AuthGuard] },
       // otherwise redirect to home
       { path: '**', redirectTo: '', canActivate: [AuthGuard]} 
     ]}
@@ -69,10 +66,10 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    RecordListComponent,
-    RecordItemComponent,
     DiscoverRecordComponent,
-    NgModalComponent,
+    CollectionModalComponent,
+    DiscoverModalComponent,
+    WatchlistModalComponent,
     SigninComponent,
     CatalogComponent,
     PageWrapperComponent,
@@ -88,6 +85,7 @@ const appRoutes: Routes = [
     FormsModule,
     MatFormFieldModule,
     MatButtonModule,
+    MatInputModule,
     NgbModule,
     SocialLoginModule
   ],

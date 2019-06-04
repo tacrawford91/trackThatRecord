@@ -1,9 +1,11 @@
 <nav>
   <app-nav-bar></app-nav-bar>
 </nav>
-<router-outlet></router-outlet>
-<footer class="absolute bottom-0 pv4 ph3 ph5-m ph6-l white bg-gray w-100 tc">
-  <div>
-    copyright Troy A. Crawford
-  </div>
-</footer>
+<div class="mainPageWrapper">
+  <router-outlet></router-outlet>
+  <footer class="absolute bottom-0 white bg-gray w-100 tc">
+     <div class="footerbkg flex">
+      <div class="w-100 pt4">Copyright Troy A. Crawford</div>
+    </div>
+  </footer>
+</div>

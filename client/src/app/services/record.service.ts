@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 ;
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 
 
@@ -22,15 +23,14 @@ export class RecordService {
 
     let URI = `${this.serverApi}/api/record/`;
 
-    return this.http.get(URI)
-    
-  }
+    return this.http.get(URI);
+  };
 
   public getByArtist(artist) {
     let URI = `${this.serverApi}/api/discogs/${artist}`;
     
-    return this.http.get(URI)
-  }
+    return this.http.get(URI);
+  };
 
   public saveRecord(record) {
     const newRecord ={
@@ -48,15 +48,24 @@ export class RecordService {
       type: record.type,
       year: record.year,
       uri: record.uri
-    }
-    console.log('service', newRecord);
-    console.log(record.id);
+    };
+
     let URI = `${this.serverApi}/api/record/save/${record.id}`;
-    return this.http.post(URI, newRecord).subscribe((data) => console.log(data));
-
-
-
+    return this.http.post(URI, newRecord);
   }
 
+  //get record list
+  public getRecordList(recordArray) {
+    let URI = `${this.serverApi}/api/record/recordList`;
+    return this.http.post(URI, recordArray);
+  }
 
+  //get record price suggestion
+  public getRecordPrice(releaseId) {
+    let URI = `${this.serverApi}/api/discogs/record/market/${releaseId}`;
+    console.log(URI)
+    return this.http.get(URI).pipe(map((res) => {
+      console.log('get price response', res)
+    }))
+  }
 }

@@ -37,4 +37,12 @@ module.exports.deleteRecordById = (id, callback) => {
     Record.remove(query, callback);
 }
 
+module.exports.getRecordList = (recordArray, callback) => {
+  console.log('record model', recordArray);
+  Record.find({
+    _id: {
+      $in: recordArray
+    }
+  })
+}
 

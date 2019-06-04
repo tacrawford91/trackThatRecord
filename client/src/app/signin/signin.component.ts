@@ -51,19 +51,22 @@ export class SigninComponent implements OnInit {
 
       this.userSerice.getByfaceBook(userData)
       .subscribe((res) => {
-        if (res._id) {
-          this.router.navigateByUrl('/discover');
-          localStorage.setItem('currentUser', JSON.stringify(res));
-        }
+        // if (res._id) {
+        // }
+        this.router.navigateByUrl('/discover');
+        localStorage.setItem('currentUser', JSON.stringify(res));
       })
 
     } else if (socialPlatform == "google") {
       this.userSerice.getByGoogle(userData)
         .subscribe((res) => { 
-          if(res._id){
-            this.router.navigateByUrl('/discover');
-            localStorage.setItem('currentUser', JSON.stringify(res));
-          }
+          // if(res){
+          //   this.router.navigateByUrl('/discover');
+          //   localStorage.setItem('currentUser', JSON.stringify(res));
+          // }
+
+          this.router.navigateByUrl('/discover');
+          localStorage.setItem('currentUser', JSON.stringify(res));
 
          })
     } 
@@ -72,6 +75,7 @@ export class SigninComponent implements OnInit {
   logout() {
     // remove user from local storage to log user out
     this.userSerice.logout();
+    this.router.navigateByUrl('/');
   }
 
 

@@ -43,6 +43,24 @@ router.get('/fbuser/:id', (req, res) => {
 });
 
 
+
+
+//PUT HTTP method
+//create catalog
+router.put('/save/catalog/:id', (req, res, next) => {
+  user.addCatalog(req.params.id, req.body._id, (err,cata) => {
+  });
+});
+
+//create watchlist
+router.put('/save/watchlist/:id', (req, res, next) => {
+  user.addWatchlist(req.params.id, req.body._id, (err,cata) => {
+  });
+});
+
+
+
+
 //POST HTTP method
 router.post('/save/:id', (req, res, next) => {
     let newUser = new user({
