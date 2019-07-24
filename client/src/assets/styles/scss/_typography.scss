@@ -7,123 +7,97 @@
 
 /*
 
-   TYPOGRAPHY
-   http://tachyons.io/docs/typography/measure/
+   TYPE SCALE
+   Docs: http://tachyons.io/docs/typography/scale/
+
+   Base:
+    f = font-size
+
+   Modifiers
+     1 = 1st step in size scale
+     2 = 2nd step in size scale
+     3 = 3rd step in size scale
+     4 = 4th step in size scale
+     5 = 5th step in size scale
+     6 = 6th step in size scale
 
    Media Query Extensions:
      -ns = not-small
      -m  = medium
      -l  = large
-
 */
 
+/*
+ * For Hero/Marketing Titles
+ *
+ * These generally are too large for mobile
+ * so be careful using them on smaller screens.
+ * */
 
-
-/* Measure is limited to ~66 characters */
-.measure {
-  max-width: $measure;
-}
-
-/* Measure is limited to ~80 characters */
-.measure-wide {
-  max-width: $measure-wide;
-}
-
-/* Measure is limited to ~45 characters */
-.measure-narrow {
-  max-width: $measure-narrow;
-}
-
-/* Book paragraph style - paragraphs are indented with no vertical spacing. */
-.indent {
-  text-indent: 1em;
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.small-caps {
-  font-variant: small-caps;
-}
-
-/* Combine this class with a width to truncate text (or just leave as is to truncate at width of containing element. */
-
-.truncate {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-@media #{$breakpoint-not-small} {
-  .measure-ns  {
-    max-width: $measure;
-  }
-  .measure-wide-ns {
-    max-width: $measure-wide;
-  }
-  .measure-narrow-ns {
-    max-width: $measure-narrow;
-  }
-  .indent-ns {
-    text-indent: 1em;
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-  .small-caps-ns {
-    font-variant: small-caps;
-  }
-  .truncate-ns {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-}
-
-@media #{$breakpoint-medium} {
-  .measure-m {
-    max-width: $measure;
-  }
-  .measure-wide-m {
-    max-width: $measure-wide;
-  }
-  .measure-narrow-m {
-    max-width: $measure-narrow;
-  }
-  .indent-m {
-    text-indent: 1em;
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-  .small-caps-m {
-    font-variant: small-caps;
-  }
-  .truncate-m {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-}
-
-@media #{$breakpoint-large} {
-  .measure-l {
-    max-width: $measure;
-  }
-  .measure-wide-l {
-    max-width: $measure-wide;
-  }
-  .measure-narrow-l {
-    max-width: $measure-narrow;
-  }
-  .indent-l {
-    text-indent: 1em;
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-  .small-caps-l {
-    font-variant: small-caps;
-  }
-  .truncate-l {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-}
+ .f-6,
+ .f-headline {
+   font-size: $font-size-headline;
+ }
+ .f-5,
+ .f-subheadline {
+   font-size: $font-size-subheadline;
+ }
+ 
+ 
+ /* Type Scale */
+ 
+ 
+ .f1 { font-size: $font-size-1; }
+ .f2 { font-size: $font-size-2; }
+ .f3 { font-size: $font-size-3; }
+ .f4 { font-size: $font-size-4; }
+ .f5 { font-size: $font-size-5; }
+ .f6 { font-size: $font-size-6; }
+ .f7 { font-size: $font-size-7; }
+ 
+ @media #{$breakpoint-not-small}{
+   .f-6-ns,
+   .f-headline-ns { font-size: $font-size-headline; }
+   .f-5-ns,
+   .f-subheadline-ns { font-size: $font-size-subheadline; }
+   .f1-ns { font-size: $font-size-1; }
+   .f2-ns { font-size: $font-size-2; }
+   .f3-ns { font-size: $font-size-3; }
+   .f4-ns { font-size: $font-size-4; }
+   .f5-ns { font-size: $font-size-5; }
+   .f6-ns { font-size: $font-size-6; }
+   .f7-ns { font-size: $font-size-7; }
+ }
+ 
+ @media #{$breakpoint-medium} {
+   .f-6-m,
+   .f-headline-m { font-size: $font-size-headline; }
+   .f-5-m,
+   .f-subheadline-m { font-size: $font-size-subheadline; }
+   .f1-m { font-size: $font-size-1; }
+   .f2-m { font-size: $font-size-2; }
+   .f3-m { font-size: $font-size-3; }
+   .f4-m { font-size: $font-size-4; }
+   .f5-m { font-size: $font-size-5; }
+   .f6-m { font-size: $font-size-6; }
+   .f7-m { font-size: $font-size-7; }
+ }
+ 
+ @media #{$breakpoint-large} {
+   .f-6-l,
+   .f-headline-l {
+     font-size: $font-size-headline;
+   }
+   .f-5-l,
+   .f-subheadline-l {
+     font-size: $font-size-subheadline;
+   }
+   .f1-l { font-size: $font-size-1; }
+   .f2-l { font-size: $font-size-2; }
+   .f3-l { font-size: $font-size-3; }
+   .f4-l { font-size: $font-size-4; }
+   .f5-l { font-size: $font-size-5; }
+   .f6-l { font-size: $font-size-6; }
+   .f7-l { font-size: $font-size-7; }
+ }
+ 

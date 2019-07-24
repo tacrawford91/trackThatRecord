@@ -18,6 +18,11 @@ export class DiscoverRecordComponent implements OnInit {
 
   searchResults; 
   currentUser;
+  page = '1';
+  artist = '';
+  currentPage = 1;
+  lastPage;  
+
 
   constructor(
     private recordService: RecordService,
@@ -33,9 +38,9 @@ export class DiscoverRecordComponent implements OnInit {
 
   }
 
-  public artistSearch(artist) {
-    console.log('artist search', artist.value)
-    this.recordService.getByArtist(artist.value)
+  public artistSearch(artist, page ='1') {
+    console.log('artist search', artist +' ' + page);
+    this.recordService.getByArtist(artist, page)
       .subscribe(data => {
         // console.log(data)
         // this.searchResults = data['results'];
@@ -50,17 +55,23 @@ export class DiscoverRecordComponent implements OnInit {
         // //clean images
         // vinyls.forEach(record => {
         //   if (record.cover_image.includes('spacer.gif')){
-        //     record.cover_image = 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/12in-Vinyl-LP-Record-Angle.jpg/800px-12in-Vinyl-LP-Record-Angle.jpg'
+        //     record.cover_image = 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/12in-Vinyl-LP-Record-Angle.jpg/800px-12in-Vinyl-LP-Record-Angle.jpg';
         //   }
         // })
+        console.log('can you see page', data);
+        //update page
+        this.page = data['pagination'].page;
+        this.lastPage = data['pagination'].pages;
+        this.artist = artist;
+        // console.log('artist', this.artist);
 
         //clean images
         data['results'].forEach(record => {
           console.log(data)
           if (record.cover_image.includes('spacer.gif')) {
             record.cover_image = 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/12in-Vinyl-LP-Record-Angle.jpg/800px-12in-Vinyl-LP-Record-Angle.jpg'
-          }
-        })
+          };
+        });
 
         return this.searchResults = data['results'];
       })
@@ -68,7 +79,6 @@ export class DiscoverRecordComponent implements OnInit {
 
 
   public addToCollection(record) {
-    
     this.recordService.saveRecord(record).subscribe((data) => {
       this.catalogService.addToCatalog(this.currentUser, data['savedRecord']._id)
       .subscribe((record) => console.log(`added record`, record));
@@ -88,5 +98,22 @@ export class DiscoverRecordComponent implements OnInit {
 
   public getPriceSuggestion() {
 
+  }
+
+  public nextPage() {
+    if (this.currentPage < this.lastPage) {
+      this.currentPage = this.currentPage + 1;
+      console.log('next artist', this.artist);
+      this.artistSearch(this.artist, this.currentPage.toString());
+    }
+  }
+
+  public backPage() {
+    if (this.currentPage == 1) {
+      return;
+    }
+
+    this.currentPage = this.currentPage - 1;
+    this.artistSearch(this.artist, this.currentPage.toString());
   }
 }

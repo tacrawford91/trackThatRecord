@@ -1,33 +1,89 @@
 
-<div class="discoverBodyHero">
-  <div class="container">
+<div class="mainHeroBkg">
+  <div class="container h-100 flex justify-center items-center">
     <div class="row">
-        <div class="white pv5 mv0 f1 titleShadow tc">
-          <div class="titleColor titleShadow mainHeader">Track That Record </div>
-          <div class="flex white f3 tc">
-            <h3 class="w-33">Grow</h3>
-            <h3 class="w-33">Share</h3>  
-            <h3 class="w-33">Spin</h3>
+        <div class="white pv5 f1 titleShadow tc center">
+          <div class="titleColor titleShadow mainHeader">Track That <br> Record </div>
+          <div class="flex flex-wrap justify-center">
+            <div class="mh1">
+              <button class="btn btn__primary"> 
+                Discover
+              </button>
+            </div>
+            <div class="mh1">
+              <button class="btn btn__secondary">
+                My Collection 
+              </button>
+            </div>
           </div>
         </div>
     </div>
-    <div class="row tr">
-
-    </div>
   </div>
 </div>
+
+
+<section class="relative">
+  <div class="container pv7">
+    <div class="row pv7">
+      <div class="col-md-6 tc">
+        <div class="section__title"> Grow </div>
+        <div class="section__subtitle"> Grow Your Collection </div>
+        <img class="db dn-ns" src="assets/images/collectionHero.png"/>
+        <div class="mv3 section__body">Discover new vinyl. Add to your watch list to grow your collection while ensuring you are getting the best value.</div>
+      </div>
+      <div class="col-md-6"></div>
+    </div>
+  </div>
+  <div class="image__grow  section__img section__img__right"></div>
+</section>
+<section class="relative">
+  <div class="container pv7">
+    <div class="row pv7">
+      <div class="col-md-6"></div>
+      <div class="col-md-6 tc">
+        <div class="section__title"> Share</div>
+        <div class="section__subtitle"> Share Your Passion </div>
+        <img class="db dn-ns" src="assets/images/recordbody-cartoon.png"/>
+        <div class="mv3 section__body">Catalogue your existing collection to make it searchable by Others. Find out a single vinyls worth, or the entire collection. </div>
+      </div>
+    </div>
+  </div>
+  <div class="image__share  section__img "></div>
+</section>
+<section class="relative">
+  <div class="container pv7">
+    <div class="row pv7">
+      <div class="col-md-6 tc">
+        <div class="section__title"> Spin </div>
+        <div class="section__subtitle"> Spin For Your Soul </div>
+        <img class="db dn-ns" src="assets/images/mainHeroTest.jpg"/>
+        <div class="mv3 section__body">Interested in listening to a record before you buy? Head over to our spin deck, find the record, and enjoy.</div>
+      </div>
+      <div class="col-md-6"></div>
+    </div>
+  </div>
+  <div class="image__spin section__img section__img__right"></div>
+</section>
+
+
+
+
+
+
+
+
 
 <div class="searchBarGray">
   <div class="container pv4">
     <div class="row">
       <div class="col-md-6 tc">
-        <div class="f1 white titleShadow textRecordGray">Discover +</div>
+        <div class="f2 white monoton mv2">Discover +</div>
       </div>
-      <div class="col-md-6 flex items-center">
-        <div class>
+      <div class="col-md-6">
+        <div class="flex items-center mv2">
           <div class="box">
               <div class="container-4">
-                <input #artist type="search" id="search" placeholder="Search By Artist..."  (keyup.enter)="artistSearch(artist)"/>
+                <input [(ngModel)]="artist" type="search" id="search" placeholder="Search By Artist..."  (keyup.enter)="artistSearch(artist)"/>
                 <button class="icon" (click)="artistSearch(artist)" ><i class="fa fa-search"></i></button>
               </div>
             </div>
@@ -37,77 +93,84 @@
   </div>
 </div>
 
-
-<div class="relative tc">
-    <div *ngIf="!searchResults" class="spacer flex items-center flex-wrap center">
-        <div class="w-33">
-          <img src="/assets/images/plainRecordImg.png">
-        </div>
-        <div class="w-33">
-          <img src="/assets/images/plainRecordImg.png">
-        </div>
-        <div class="w-33">
-          <img src="/assets/images/plainRecordImg.png">
-        </div>
-
-        <div class="w-33">
-          <img src="/assets/images/plainRecordImg.png">
-        </div>
-        <div class="w-33">
-          <img src="/assets/images/plainRecordImg.png">
-        </div>
-        <div class="w-33">
-          <img src="/assets/images/plainRecordImg.png">
-        </div>
-
-        <div *ngIf="!searchResults" class="spacer__text white absolute f4 titleShadow mb4 w-100 tc ttu">
-            Search an artist above to Grow your collection or add to watchlist
-        </div>
-       
-        <!-- <div class="container">
-          <div cslass="row">
-            <div class="flex flex-wrap items-center overflow-hidden mv6"> 
-              <div class="tc grow searchAlbum w-25 pa2 ma2" *ngFor="let result of searchResults">
-                <discover-modal-component 
-                  [title]="result.title"
-                  [format]="result.format"
-                  [genre]="result.genre"
-                  [cover_image]="result.cover_image"
-                  (onSaveRecordPressed)="saveRecord(result)"
-                  (addToCollectionPressed)="addToCollection(result)"
-                  (addToWatchlistPressed)="addToWatchlist(result)"
-                >
-                <img src="{{result.cover_image}}">
-                <h3 class="db">{{result.title}}</h3>
-              
-              </discover-modal-component>
+<div class="results-wrapper">
+  <div class="relative tc ">
+      <div *ngIf="!searchResults" class="spacer flex items-center flex-wrap center pv4">
+          <div class="w-33">
+            <img src="/assets/images/plainRecordImg.png">
+          </div>
+          <div class="w-33">
+            <img src="/assets/images/plainRecordImg.png">
+          </div>
+          <div class="w-33">
+            <img src="/assets/images/plainRecordImg.png">
+          </div>
+  
+          <div class="w-33">
+            <img src="/assets/images/plainRecordImg.png">
+          </div>
+          <div class="w-33">
+            <img src="/assets/images/plainRecordImg.png">
+          </div>
+          <div class="w-33">
+            <img src="/assets/images/plainRecordImg.png">
+          </div>
+  
+          <div *ngIf="!searchResults" class="spacer__text white absolute f4 titleShadow mb4 w-100 tc ttu">
+              Search an artist above to Grow your collection or add to watchlist
+          </div>
+         
+          <!-- <div class="container">
+            <div cslass="row">
+              <div class="flex flex-wrap items-center overflow-hidden mv6"> 
+                <div class="tc grow searchAlbum w-25 pa2 ma2" *ngFor="let result of searchResults">
+                  <discover-modal-component 
+                    [title]="result.title"
+                    [format]="result.format"
+                    [genre]="result.genre"
+                    [cover_image]="result.cover_image"
+                    (onSaveRecordPressed)="saveRecord(result)"
+                    (addToCollectionPressed)="addToCollection(result)"
+                    (addToWatchlistPressed)="addToWatchlist(result)"
+                  >
+                  <img src="{{result.cover_image}}">
+                  <h3 class="db">{{result.title}}</h3>
+                
+                </discover-modal-component>
+                </div>
               </div>
             </div>
-          </div>
-        </div> -->
-
-      </div>
-</div>
-
-<div class="container">
-  <div class="row">
-    <div class="flex flex-wrap items-center">
-      <div class="tc grow searchAlbum pa2 ma2 w-20" *ngFor="let result of searchResults">
-        <discover-modal-component 
-          [title]="result.title"
-          [format]="result.format"
-          [genre]="result.genre"
-          [cover_image]="result.cover_image"
-          (onSaveRecordPressed)="saveRecord(result)"
-          (addToCollectionPressed)="addToCollection(result)"
-          (addToWatchlistPressed)="addToWatchlist(result)"
-        >
-        <div>
-          <img class="albumImg" src="{{result.cover_image}}">
+          </div> -->
+  
         </div>
-        <h3 class="db f4">{{result.title}}</h3>
-      </discover-modal-component>
+  </div>
+  
+  <div class="container">
+    <div class="row  pv4">
+      <div class="center">
+        <div class="f6 link dim ph3 pv2 mb2 dib white bg-black"  (click)="backPage()"  [hidden]="currentPage == 1">Back</div>
+        <div class="f6 link dim ph3 pv2 mb2 dib white bg-black ml4">Page {{currentPage}} of {{lastPage}}</div>
+        <div class="f6 link dim ph3 pv2 mb2 dib white bg-black ml4" (click)="nextPage()" [hidden]="currentPage == lastPage">Next</div>
+      </div>
+      <div class="flex flex-wrap items-center justify-center">
+        <div class="tc grow searchAlbum pa2 ma2 w-30" *ngFor="let result of searchResults">
+          <discover-modal-component 
+            [title]="result.title"
+            [format]="result.format"
+            [genre]="result.genre"
+            [cover_image]="result.cover_image"
+            (onSaveRecordPressed)="saveRecord(result)"
+            (addToCollectionPressed)="addToCollection(result)"
+            (addToWatchlistPressed)="addToWatchlist(result)"
+          >
+          <div>
+            <img class="albumImg" src="{{result.cover_image}}">
+          </div>
+          <h3 class="db f4">{{result.title}}</h3>
+        </discover-modal-component>
+        </div>
       </div>
     </div>
   </div>
+
 </div>

@@ -26,9 +26,9 @@ export class RecordService {
     return this.http.get(URI);
   };
 
-  public getByArtist(artist) {
-    let URI = `${this.serverApi}/api/discogs/${artist}`;
-    
+  public getByArtist(artist, page = '1') {
+    let URI = `${this.serverApi}/api/discogs/${artist}?page=${page}&per_page=9`;
+    console.log('URI', URI);
     return this.http.get(URI);
   };
 

@@ -17,8 +17,8 @@ var mp = new Discogs({ userToken: 'sYlHfWvRAkbDIAiKXRCVoVLhopAmiUjjPRJlqflw' }).
 router.get('/:artist', (req, res) => {
     const params2 = {
         artist: req.params.artist,
-        per_page: 8,
-        page: 1
+        per_page: req.query.per_page,
+        page: req.query.page
     }
 
     db.search( params2, function (err, data) {

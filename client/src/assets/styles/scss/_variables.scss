@@ -132,12 +132,29 @@ $washed-red: #ffdfdf !default;
 
 // Custom Media Query Variables
 
-$breakpoint-not-small: 'screen and (min-width: 30em)' !default;
-$breakpoint-medium: 'screen and (min-width: 30em) and (max-width: 60em)' !default;
-$breakpoint-large: 'screen and (min-width: 60em)' !default;
+// $breakpoint-not-small: 'screen and (min-width: 30em)' !default;
+$breakpoint-not-small: 'screen and (min-width: 576px)' !default;
+$breakpoint-medium: 'screen and (min-width: 768px) and (max-width: 992px)' !default;
+$breakpoint-large: 'screen and (min-width: 992px)' !default;
 
 /*
 
-    VARIABLES
+    VARIABLE OVERRIDES
 
 */
+
+$spacing-extra-small: .5rem;
+$spacing-small:  1rem;
+$spacing-medium: 1.5rem;
+$spacing-large: 2rem;
+$spacing-extra-large: 2.5rem;
+$spacing-extra-extra-large: 3rem;
+$spacing-extra-extra-extra-large: 5rem; 
+
+$font-size-1: 4rem;
+$font-size-2: 2.75rem;
+$font-size-3: 1.75rem;
+$font-size-4: 1.5rem;
+$font-size-5: 1.375rem;
+$font-size-6: 1.25rem;
+$font-size-7: 1rem;

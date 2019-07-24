@@ -1,10 +1,15 @@
+$light-purp: #cfcff1ad;   
+$light-red: #f1e0cf;
+$light-blue: #cff1f1;
+$neon-blue: #2ff4ff6b;
+
 .mainHeroBkg {
-  background-image: url("/assets/images/mainRecordHero.png");
+  background-image: url("/assets/images/mainHeroTest2.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center 0;
+  background-position: bottom;
   background-color: white;
-  height: 69vh;
+  height: 92vh;
 }
 
 .discoverBodyHero {
@@ -25,8 +30,13 @@
 }
 
 .mainHeader {
-  font-size: 50px;
+  font-size: 68px;
   letter-spacing: 1.2px;
+  font-family: monoton; 
+}
+
+.monoton {
+  font-family: monoton; 
 }
 
 .titleShadow {
@@ -47,7 +57,7 @@
 }
 
 .searchBarGray {
-  background: #ffff
+  background: #201f22
 }
 
 .searchResult {
@@ -128,4 +138,83 @@
 }
 .albumImg {
   height: 225px;
+}
+
+.results-wrapper {
+  background-color: $light-purp;
+}
+
+.btn {
+  display: inline-block;
+  font-weight: 400;
+  color: #212529;
+  text-align: center;
+  vertical-align: middle;
+  padding: 1rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 2px;
+  box-shadow: 0 24px 48px -12px rgba(0,0,0,.1);
+  width: 140px;
+
+  &__primary {
+    background: #ffa323;
+    border: 1px solid #ffa323;
+    color: #fff;
+  }
+
+  &__secondary {
+    border-color: rgba(255,255,255,.8);
+    background: 0 0;
+    border-width: 1px;
+    color: #fff;
+  }
+}
+
+.image {
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  &__grow {
+    background-image: url('/assets/images/collectionHero.png');
+  }
+  &__share {
+    background-image: url('/assets/images/recordbody-cartoon.png');
+  }
+  &__spin {
+    background-image: url('/assets/images/mainHeroTest.jpg');
+  }
+}
+.section {
+  &__title {
+    font-size: 3.5rem;
+    color: #ffa323;
+    font-family: cursive;
+    letter-spacing: 11px;
+
+  }
+  &__subtitle {
+    font-size: 2rem;
+    position: relative;
+    top: -13px;
+    color: #2b2929d6;
+    font-weight: 600;
+  }
+  
+  &__body {
+    line-height: 30px;
+    font-size: 1.25rem;
+    text-align: left;
+  }
+  &__img {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    &__right {
+      right: 0;
+    }
+  }
 }
